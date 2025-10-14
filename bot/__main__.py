@@ -10,6 +10,7 @@ def main() -> None:
             updates = bot.tgClient.getUpdates(offsetCounter)
             bot.databaseClient.persist_updates(updates)
             for upd in updates:
+                offsetCounter = max(offsetCounter, upd["update_id"] + 1)
                 msg = upd.get("message")
                 if not msg:
                     continue
@@ -27,7 +28,6 @@ def main() -> None:
                         text="Cannot echo this type of messages, sr",
                     )
                 print(".", end="", flush=True)
-                offsetCounter = max(offsetCounter, upd["update_id"] + 1)
             time.sleep(1)
     except KeyboardInterrupt:
         print("\nStop")

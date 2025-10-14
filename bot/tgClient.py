@@ -9,7 +9,6 @@ load_dotenv()
 
 def makeRequest(method: str, **params) -> dict:
     jsonData = json.dumps(params).encode("utf-8")
-    print(f"{os.getenv('TELEGRAM_BASE_URI')}{os.getenv('TOKEN')}/{method}")
     print(jsonData)
     request = urllib.request.Request(
         method="POST",
