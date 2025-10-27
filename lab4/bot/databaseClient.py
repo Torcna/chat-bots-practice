@@ -23,7 +23,7 @@ def recreate_db() -> None:
 
 
 def persistUpdate(update: dict) -> None:
-    payload = json.dumps(update, ensure_ascii=False)
+    payload = json.dumps(update, ensure_ascii=False, indent=2)
     with sqlite3.connect(os.getenv("SQLITE_DATABASE_PATH")) as connection:
         with connection:
             connection.execute(
